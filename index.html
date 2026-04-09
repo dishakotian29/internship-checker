@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Converter</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus, select:focus {
+            border-color: #4facfe;
+        }
+
+        button {
+            width: 95%;
+            padding: 12px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #007bff;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #222;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🌡 Temperature Converter</h2>
+
+    <input type="number" id="temp" placeholder="Enter temperature">
+
+    <select id="conversion">
+        <option value="c_to_f">Celsius → Fahrenheit</option>
+        <option value="f_to_c">Fahrenheit → Celsius</option>
+        <option value="c_to_k">Celsius → Kelvin</option>
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <p id="result"></p>
+</div>
+
+<script>
+function convert() {
+    let temp = document.getElementById("temp").value;
+    let type = document.getElementById("conversion").value;
+
+    if (temp === "") {
+        document.getElementById("result").innerText = "Please enter a value!";
+        return;
+    }
+
+    let result;
+
+    if (type === "c_to_f") {
+        result = (temp * 9/5) + 32;
+    } 
+    else if (type === "f_to_c") {
+        result = (temp - 32) * 5/9;
+    } 
+    else if (type === "c_to_k") {
+        result = parseFloat(temp) + 273.15;
+    }
+
+    document.getElementById("result").innerText = "Result: " + result.toFixed(2);
+}
+</script>
+
+</body>
+</html>
